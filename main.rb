@@ -24,7 +24,7 @@ context = getContext
 @browser.goto context
 @browser.window.maximize
 proceed_to_context
-#login_using @username, @password, @provider_code
+login_using @username, @password, @provider_code
 (getLimit..excel_file.last_row).each do |row|
   puts "Row Number:" + row
   search_letter excel_file.cell(row,1).to_s.chomp
