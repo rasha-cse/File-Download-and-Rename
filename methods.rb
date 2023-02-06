@@ -33,13 +33,13 @@ end
 
 def getContext
   puts "Please, Select the Context:"
-  puts "1. https://secure.therapservices.net"
+  puts "1. https://secure.services.net"
   puts "2. https://192.168.0.48"
   puts "3. Any Other Context"
   n=gets.chomp
   case n.to_i
     when 1
-      return	"https://secure.therapservices.net"
+      return	"https://secure.services.net"
     when 2
       return	"https://192.168.0.48"
     when 3
