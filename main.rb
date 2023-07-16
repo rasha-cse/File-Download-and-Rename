@@ -25,12 +25,18 @@ context = getContext
 @browser.window.maximize
 proceed_to_context
 login_using @username, @password, @provider_code
-(getLimit..excel_file.last_row).each do |row|
-  puts "Row Number:" + row
-  search_letter excel_file.cell(row,1).to_s.chomp
-  puts excel_file.cell(row,1).to_s.chomp
-  download
-  rename excel_file.cell(row,2).to_s.chomp, excel_file.cell(row,1).to_s.chomp
+(getStaringRowToProcess(lines, excel_file)..excel_file.last_row).each do |row| #excel_file.last_row
+  puts "Row Number:" + row.to_s
+  search_letter excel_file.cell(row,2).to_s.chomp
+  puts excel_file.cell(row,2).to_s.chomp
+  download excel_file.cell(row,3).to_s.chomp
+  rename excel_file.cell(row,3).to_s.chomp, excel_file.cell(row,2).to_s.chomp
+
+  new_link = @context + @doc_storage_link + excel_file.cell(row,1).to_s.chomp
+  @browser.goto new_link
+  doc_storage_upload excel_file.cell(row,2).to_s.chomp + ".docx"  #"Row: " + row.to_s + " " ,
+  log_entry "Row: " + row.to_s + " " + excel_file.cell(row,2).to_s.chomp
+  puts "It took " + ((Time.now - start)/60).to_s + " minutes"
 end
 #xrebel_remove
 
